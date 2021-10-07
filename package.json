@@ -1,0 +1,7 @@
+{
+    "name": "monolieta-search",
+    "version": "0.1",
+    "devDependencies": {
+        "rollup": "~2.58.0"
+    }
+}
