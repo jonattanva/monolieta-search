@@ -1,12 +1,20 @@
 import type from "./type";
 import Document from "./document";
 import tokenizer from "./tokenizer";
+import sensitive from "./sensitive";
+import corpus, { words } from "./stopwords";
 
 export default class Search {
     private document: Document;
+    private caseSensitive: boolean;
+    private stopwords: { [key in string]: boolean };
 
-    constructor() {
+    // TODO: change arguments to object
+    // TODO: Exact match or substring matching
+    constructor(caseSensitive: boolean = false, language: string = "en") {
         this.document = new Document();
+        this.stopwords = words(language);
+        this.caseSensitive = caseSensitive;
     }
 
     /**
@@ -23,14 +31,15 @@ export default class Search {
     /**
      * Search all documents for ones matching the specified query text.
      */
-    where(query: string): string[] {
+    where(text: string): string[] {
         if (this.document.length === 0) {
             return [];
         }
 
-        // prettier-ignore
-        const token = tokenizer(query)
-            .map((word) => word.toLowerCase());
+        const token = corpus(
+            tokenizer(sensitive(String(text), this.caseSensitive)),
+            this.stopwords
+        );
         const total = token.length;
 
         const result = [];
@@ -87,7 +96,10 @@ export default class Search {
                 return token;
             }
             default: {
-                return tokenizer(String(body).toLowerCase());
+                return corpus(
+                    tokenizer(sensitive(String(body), this.caseSensitive)),
+                    this.stopwords
+                );
             }
         }
     }

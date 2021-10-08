@@ -1,6 +1,15 @@
 import Search from "../search";
 
 describe("Search", () => {
+    it("sarch document [case sensitive]", () => {
+        const search = new Search(true);
+        search.index("001", "The Lord of the Rings");
+        search.index("002", "The Hobbit");
+
+        expect(search.where("hobbit")).toEqual([]);
+        expect(search.where("Hobbit")).toEqual(["002"]);
+    });
+
     it("search document [index is empty]", () => {
         const search = new Search();
         expect(search.where("the lord")).toEqual([]);
@@ -10,7 +19,7 @@ describe("Search", () => {
         const search = new Search();
         search.index("001", "The Lord of the Rings");
         search.index("002", "The Hobbit");
-        expect(search.where("the lord")).toEqual(["001", "002"]);
+        expect(search.where("the lord")).toEqual(["001"]);
     });
 
     it("search document [index is array]", () => {
