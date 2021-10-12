@@ -191,6 +191,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: coverage-report
+          path: coverage
 
       - name: Coveralls 🔮
         uses: coverallsapp/github-action@master
