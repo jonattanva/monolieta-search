@@ -1,5 +1,5 @@
-import { Document } from "../../Document";
-import { SearchWordStrategy } from "../SearchWordStrategy";
+import { Document } from "../../document";
+import { SearchWordStrategy } from "../searchwordstrategy";
 
 describe("Search word strategy", () => {
     it("search document", () => {

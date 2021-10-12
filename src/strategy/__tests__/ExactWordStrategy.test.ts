@@ -1,5 +1,5 @@
-import { Document } from "../../Document";
-import { ExactWordStrategy } from "../ExactWordStrategy";
+import { Document } from "../../document";
+import { ExactWordStrategy } from "../exactwordstrategy";
 
 describe("Exact word strategy", () => {
     it("search document", () => {

@@ -1,5 +1,5 @@
-import { Strategy } from "./Strategy";
-import type { Document } from "../Document";
+import { Strategy } from "./strategy";
+import type { Document } from "../document";
 
 export class ExactWordStrategy extends Strategy {
     constructor(document: Document) {

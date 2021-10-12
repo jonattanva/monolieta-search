@@ -1,4 +1,4 @@
-import { Document } from "../Document";
+import { Document } from "../document";
 
 describe("Document", () => {
     it("document is empty", () => {

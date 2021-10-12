@@ -1,4 +1,4 @@
-import type { Tokenizer } from "./Tokenizer";
+import type { Tokenizer } from "./tokenizer";
 
 export class CaseSensitiveTokenizer implements Tokenizer {
     private tokenizer: Tokenizer;

@@ -1,13 +1,13 @@
-import { Document } from "./Document";
-import { SimpleTokenizer } from "./tokenizer/SimpleTokenizer";
-import { CaseSensitiveTokenizer } from "./tokenizer/CaseSensitiveTokenizer";
+import { Document } from "./document";
+import { SimpleTokenizer } from "./tokenizer/simpletokenizer";
+import { CaseSensitiveTokenizer } from "./tokenizer/casesensitivetokenizer";
 
-import { ExactWordStrategy } from "./strategy/ExactWordStrategy";
-import { SearchWordStrategy } from "./strategy/SearchWordStrategy";
+import { ExactWordStrategy } from "./strategy/exactwordstrategy";
+import { SearchWordStrategy } from "./strategy/searchwordstrategy";
 
-import type { Setting } from "./Setting";
-import type { Strategy } from "./strategy/Strategy";
-import type { Tokenizer } from "./tokenizer/Tokenizer";
+import type { Setting } from "./setting";
+import type { Strategy } from "./strategy/strategy";
+import type { Tokenizer } from "./tokenizer/tokenizer";
 
 export class Search {
     private document: Document;

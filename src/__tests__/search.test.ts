@@ -1,4 +1,4 @@
-import { Search } from "../Search";
+import { Search } from "../search";
 
 describe("Search", () => {
     it("search document (case sensitive)", () => {

@@ -1,4 +1,4 @@
-import type { Document } from "../Document";
+import type { Document } from "../document";
 
 export abstract class Strategy {
     protected document: Document;

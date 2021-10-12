@@ -1,5 +1,5 @@
-import { SimpleTokenizer } from "../SimpleTokenizer";
-import { CaseSensitiveTokenizer } from "../CaseSensitiveTokenizer";
+import { SimpleTokenizer } from "../simpletokenizer";
+import { CaseSensitiveTokenizer } from "../casesensitivetokenizer";
 
 describe("Case sesitive tokenizer", () => {
     it("tokenizer", () => {
