@@ -1,38 +1,51 @@
-export default class Document {
-    private items: number = 0;
-    private row: {
-        [token in string]: { [key in string]: boolean };
-    };
+export class Document {
+    private collection: Map<string, string[]>;
 
     constructor() {
-        this.row = {};
+        this.collection = new Map();
     }
 
-    /**
-     * Inserts a new token into the document.
-     */
     insert(token: string, uid: string) {
-        if (!this.row[token]) {
-            this.row[token] = {};
-            this.items = this.items + 1;
+        if (!this.collection.has(token)) {
+            this.collection.set(token, []);
         }
-        this.row[token][uid] = true;
+
+        const values = this.collection.get(token);
+        if (values && values.indexOf(uid) === -1) {
+            values.push(uid);
+        }
     }
 
-    /**
-     * Get rows of the document.
-     */
+    remove(uid: string) {
+        for (const [_, values] of this.collection) {
+            const index = values.indexOf(uid);
+            if (index !== -1) {
+                values.splice(index, 1);
+            }
+        }
+    }
+
     get(token: string): string[] {
-        if (this.items > 0) {
-            return Object.keys(this.row[token] || {});
+        if (this.collection.has(token)) {
+            const values = this.collection.get(token);
+            if (values) {
+                return values;
+            }
         }
         return [];
     }
 
-    /**
-     * Get the number of token in the document.
-     */
+    find(token: string): string[][] {
+        const results = [];
+        for (const [key, values] of this.collection) {
+            if (key.includes(token)) {
+                results.push(values);
+            }
+        }
+        return results;
+    }
+
     get length() {
-        return this.items;
+        return this.collection.size;
     }
 }

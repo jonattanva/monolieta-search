@@ -1,85 +1,69 @@
-import type from "./type";
-import Document from "./document";
-import tokenizer from "./tokenizer";
-import sensitive from "./sensitive";
-import corpus, { words } from "./stopwords";
+import { Document } from "./Document";
+import { SimpleTokenizer } from "./tokenizer/SimpleTokenizer";
+import { CaseSensitiveTokenizer } from "./tokenizer/CaseSensitiveTokenizer";
 
-export default class Search {
+import { ExactWordStrategy } from "./strategy/ExactWordStrategy";
+import { SearchWordStrategy } from "./strategy/SearchWordStrategy";
+
+import type { Setting } from "./Setting";
+import type { Strategy } from "./strategy/Strategy";
+import type { Tokenizer } from "./tokenizer/Tokenizer";
+
+export class Search {
     private document: Document;
-    private caseSensitive: boolean;
-    private stopwords: { [key in string]: boolean };
+    private strategy: Strategy;
+    private tokenizer: Tokenizer;
 
-    // TODO: change arguments to object
-    // TODO: Exact match or substring matching
-    constructor(caseSensitive: boolean = false, language: string = "en") {
+    constructor(setting: Setting = {}) {
+        // prettier-ignore
+        const {
+            caseSensitive = false,
+            searchWordStrategy = true
+        } = setting;
+
         this.document = new Document();
-        this.stopwords = words(language);
-        this.caseSensitive = caseSensitive;
+        this.tokenizer = new SimpleTokenizer();
+        if (!caseSensitive) {
+            this.tokenizer = new CaseSensitiveTokenizer(this.tokenizer);
+        }
+
+        this.strategy = searchWordStrategy
+            ? new SearchWordStrategy(this.document)
+            : new ExactWordStrategy(this.document);
     }
 
-    /**
-     * Add a document to the search index.
-     */
     index(uid: string, body: any) {
-        const token = this.prepare(body);
-        const total = token.length;
+        const tokens = this.prepare(body);
+        const total = tokens.length;
         for (let i = 0; i < total; i++) {
-            this.document.insert(token[i], uid);
+            this.document.insert(tokens[i], uid);
         }
     }
 
-    /**
-     * Search all documents for ones matching the specified query text.
-     */
     where(text: string): string[] {
-        if (this.document.length === 0) {
-            return [];
-        }
-
-        const token = corpus(
-            tokenizer(sensitive(String(text), this.caseSensitive)),
-            this.stopwords
-        );
-        const total = token.length;
-
-        const result = [];
-        const included: { [key in string]: boolean } = {};
-
-        for (let i = 0; i < total; i++) {
-            const rows = this.document.get(token[i]);
-            const total = rows.length;
-
-            for (let j = 0; j < total; j++) {
-                const uid = rows[j];
-                if (!included[uid]) {
-                    result.push(uid);
-                    included[uid] = true;
-                }
-            }
-        }
-
-        return result;
+        const tokens = this.tokenizer.tokenize(text);
+        const [collection] = this.strategy.where(tokens);
+        return collection;
     }
 
     private prepare(body: any): string[] {
-        switch (type(body)) {
-            case "array": {
-                const token = [];
-                const total = body.length;
+        let tokens: string[] = [];
 
+        switch (this.getType(body)) {
+            case "array": {
+                const total = body.length;
                 for (let i = 0; i < total; i++) {
                     const result = this.prepare(body[i]);
                     const total = result.length;
 
                     for (let j = 0; j < total; j++) {
-                        token.push(result[j]);
+                        tokens.push(result[j]);
                     }
                 }
-
-                return token;
+                break;
             }
+
             case "object": {
-                const token = [];
                 const keys = Object.keys(body);
                 const total = keys.length;
 
@@ -89,18 +73,35 @@ export default class Search {
                     const total = result.length;
 
                     for (let j = 0; j < total; j++) {
-                        token.push(result[j]);
+                        tokens.push(result[j]);
                     }
                 }
-
-                return token;
+                break;
             }
+
             default: {
-                return corpus(
-                    tokenizer(sensitive(String(body), this.caseSensitive)),
-                    this.stopwords
-                );
+                tokens = this.tokenizer.tokenize(String(body));
+                break;
             }
         }
+
+        return tokens;
+    }
+
+    private getType(value: any): string {
+        if (value === null || value === undefined) {
+            return "";
+        }
+
+        const type = Object.prototype.toString.call(value);
+        if (type === "[object Object]") {
+            return "object";
+        }
+
+        if (type === "[object Array]") {
+            return "array";
+        }
+
+        return typeof value;
     }
 }

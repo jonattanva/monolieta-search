@@ -1,16 +1,18 @@
 {
     "compilerOptions": {
-        "target": "es6",
+        "allowSyntheticDefaultImports": true,
+        "declaration": true,
+        "declarationDir": "dist/types",
+        "emitDeclarationOnly": true,
         "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": true,
         "skipLibCheck": true,
         "strict": true,
-        "module": "esnext",
-        "noEmit": true,
-        "moduleResolution": "node",
-        "allowSyntheticDefaultImports": true,
-        "forceConsistentCasingInFileNames": true,
-        "noFallthroughCasesInSwitch": true,
-        "isolatedModules": true
+        "target": "es6"
     },
     "include": ["src"]
 }

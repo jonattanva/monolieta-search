@@ -1,28 +1,35 @@
 {
-    "name": "monolieta-search",
-    "version": "0.1",
-    "main": "lib/index.js",
-    "module": "lib/index.esm.js",
-    "types": "lib/index.d.ts",
-    "scripts": {
-        "build": "rollup -c",
-        "watch": "rollup -c -w",
-        "test": "jest"
-    },
-    "devDependencies": {
-        "@rollup/plugin-commonjs": "~21.0.0",
-        "@rollup/plugin-typescript": "~8.2.5",
-        "@types/jest": "~27.0.2",
-        "jest": "~27.2.4",
-        "rollup": "~2.58.0",
-        "rollup-plugin-terser": "~7.0.2",
-        "ts-jest": "~27.0.5",
-        "typescript": "~4.4.3"
-    },
-    "license": "MIT",
-    "author": "Jonattan Velásquez <jonattanva89@gmail.com>",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/jonattanva/monolieta-search.git"
-    }
+  "name": "monolieta-search",
+  "version": "0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "~21.0.0",
+    "@rollup/plugin-typescript": "~8.2.5",
+    "@types/jest": "~27.0.2",
+    "jest": "~27.2.5",
+    "rollup": "~2.58.0",
+    "rollup-plugin-dts": "~4.0.0",
+    "rollup-plugin-terser": "~7.0.2",
+    "ts-jest": "~27.0.5",
+    "typescript": "~4.4.3"
+  },
+  "license": "MIT",
+  "author": "Jonattan Velásquez <jonattanva89@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonattanva/monolieta-search.git"
+  },
+  "engines": {
+    "node": ">=14.x"
+  }
 }
