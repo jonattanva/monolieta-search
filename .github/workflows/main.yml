@@ -154,3 +154,45 @@ jobs:
 
       - name: Unit Tests 🐞
         run: npm test
+
+  report-coverage:
+    name: "Report coverage"
+    timeout-minutes: 30
+
+    needs: test-linux
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Checkout repository 🛎
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }} 🐲
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Get npm cache directory path 📦
+        id: npm-cache-dir-path
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
+      - uses: actions/cache@v2
+        id: npm-cache
+        with:
+          path: ${{ steps.npm-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Download a coverage artifacts 🧳
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage-report
+
+      - name: Coveralls 🔮
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
