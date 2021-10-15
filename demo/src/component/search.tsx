@@ -1,3 +1,4 @@
+import "./search.css";
 import { useState, useEffect } from "react";
 
 interface PropTypes {
@@ -23,5 +24,9 @@ export default ({ onSearch }: PropTypes) => {
         setCriteria(event.target.value);
     };
 
-    return <input type="search" onChange={onChange} />;
+    return (
+        <div className="search-container">
+            <input className="search" type="search" onChange={onChange} />
+        </div>
+    );
 };

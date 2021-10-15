@@ -30,18 +30,6 @@ export class BM25Document extends Document {
         this.frequency = new Map();
     }
 
-    private reset() {
-        this.score.clear();
-    }
-
-    private calculateInverseDocumentFrequency() {
-        for (const [_, value] of this.term) {
-            const numerator = this.totalDocuments - value.count + 0.5;
-            const denomerator = value.count + 0.5;
-            value.idf = Math.max(Math.log10(numerator / denomerator), 0.01);
-        }
-    }
-
     insert(uid: string, tokens: string[]): void {
         const total = tokens.length;
         if (total === 0) {
@@ -53,7 +41,8 @@ export class BM25Document extends Document {
         this.average = this.totalTerms / this.totalDocuments;
 
         const cache: string[] = [];
-        tokens.forEach((token) => {
+        for (let index = 0; index < total; index++) {
+            const token = tokens[index];
             if (!this.collection.has(token)) {
                 this.collection.set(token, []);
             }
@@ -94,7 +83,7 @@ export class BM25Document extends Document {
                 cache.push(token);
                 term.count = term.count + 1;
             }
-        });
+        }
 
         this.calculateInverseDocumentFrequency();
     }
@@ -127,5 +116,17 @@ export class BM25Document extends Document {
 
         this.reset();
         return uid;
+    }
+
+    private reset() {
+        this.score.clear();
+    }
+
+    private calculateInverseDocumentFrequency() {
+        for (const [_, value] of this.term) {
+            const numerator = this.totalDocuments - value.count + 0.5;
+            const denomerator = value.count + 0.5;
+            value.idf = Math.max(Math.log10(numerator / denomerator), 0.01);
+        }
     }
 }

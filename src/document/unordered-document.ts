@@ -6,21 +6,28 @@ export class UnorderedDocument extends Document {
     }
 
     insert(uid: string, tokens: string[]): void {
-        tokens.forEach((token) => {
+        const total = tokens.length;
+        const cache = new Map<string, Map<string, boolean>>();
+
+        for (let index = 0; index < total; index++) {
+            const token = tokens[index];
             if (!this.collection.has(token)) {
                 this.collection.set(token, []);
             }
 
-            const values = this.collection.get(token);
-            if (values && values.indexOf(uid) === -1) {
-                values.push(uid);
+            if (!cache.has(token)) {
+                cache.set(token, new Map<string, boolean>());
             }
-        });
+
+            const values = this.collection.get(token);
+            if (values && !cache.get(token)!.has(uid)) {
+                values.push(uid);
+                cache.get(token)!.set(uid, true);
+            }
+        }
     }
 
-    relevance(): void {}
-
-    sort(uids: string[]): string[] {
-        return uids;
+    relevance(): void {
+        // Ignore this method
     }
 }

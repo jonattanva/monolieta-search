@@ -1,10 +1,10 @@
 import "./index.css";
+import { useState } from "react";
 import ReactDOM from "react-dom";
 import dataset from "./dataset.json";
 import Input from "./component/search";
 import Picture from "./component/picture";
 import { Search } from "monolieta-search";
-import { useState } from "react";
 
 interface Annotation {
     id: string;
@@ -21,33 +21,55 @@ const search = new Search();
 
 const Main = () => {
     const [collection] = useState<Resource[]>(() => {
+        // Annotation: 90975.87280273438 ms
+        // annotation: 99.641845703125 ms
+
         console.time("annotation");
-        const annotations = dataset.annotations.reduce(
-            (previous: any, current: any) => {
-                return {
-                    ...previous,
-                    [current.image_id]: [
-                        ...(previous[current.image_id] || []),
-                        {
-                            id: `${current.id}`,
-                            caption: current.caption,
-                        },
-                    ],
-                };
-            },
-            {}
-        );
+
+        const annotations = new Map<string, Annotation[]>();
+        const annotationsTotal = dataset.annotations.length;
+
+        for (let index = 0; index < annotationsTotal; index++) {
+            const { id, image_id, caption } = dataset.annotations[index];
+            if (!annotations.has(`${image_id}`)) {
+                annotations.set(`${image_id}`, []);
+            }
+
+            const current = annotations.get(`${image_id}`);
+            if (current) {
+                current.push({
+                    id: `${id}`,
+                    caption: caption,
+                });
+            }
+        }
+
         console.timeEnd("annotation");
 
+        // Resources: 41.408203125 ms
+        // resources: 5.4189453125 ms
+
         console.time("resources");
-        const resources = dataset.images.map((image) => ({
-            id: `${image.id}`,
-            url: image.coco_url,
-            annotation: annotations[image.id] || [],
-        }));
+        const resources = [];
+        const imagesTotal = dataset.images.length;
+
+        for (let index = 0; index < imagesTotal; index++) {
+            const { id, coco_url } = dataset.images[index];
+            resources.push({
+                id: `${id}`,
+                url: coco_url,
+                annotation: annotations.get(`${id}`) || [],
+            });
+        }
+
         console.timeEnd("resources");
 
+        // index: 6817.927001953125 ms
+        // index: 6531.689208984375 ms
+        // index: 455.589599609375 ms
+        // index: 268.406982421875 ms
         console.time("index");
+
         const total = resources.length;
         for (let index = 0; index < total; index++) {
             const resource = resources[index];
@@ -72,10 +94,11 @@ const Main = () => {
     };
 
     return (
-        <div>
-            <div>Monolieta search</div>
-            <div>
+        <div className="main">
+            <div className="title">Monolieta search</div>
+            <div className="content">
                 <Input onSearch={onSearch} />
+                <div className="info">{`Viewing ${collection.length} resources`}</div>
                 <div className="dataset">
                     {collection.map((item, index) => (
                         <Picture key={index} url={item.url} />

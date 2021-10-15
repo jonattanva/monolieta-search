@@ -8,10 +8,13 @@ export class ExactWordStrategy extends Strategy {
 
     where(tokens: string[]): string[] {
         const result: string[] = [];
-        tokens.forEach((token) => {
+        const total = tokens.length;
+
+        for (let index = 0; index < total; index++) {
+            const token = tokens[index];
             const uids = this.document.get(token);
             this.include(uids, token, result);
-        });
+        }
 
         this.reset();
         return this.document.sort(result);

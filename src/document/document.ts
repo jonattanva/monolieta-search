@@ -7,10 +7,6 @@ export abstract class Document {
 
     abstract insert(uid: string, tokens: string[]): void;
 
-    abstract relevance(token: string, uid: string): void;
-
-    abstract sort(uid: string[]): string[];
-
     get(token: string): string[] {
         if (this.collection.has(token)) {
             const values = this.collection.get(token);
@@ -33,5 +29,11 @@ export abstract class Document {
 
     get length() {
         return this.collection.size;
+    }
+
+    abstract relevance(token: string, uid: string): void;
+
+    sort(uid: string[]): string[] {
+        return uid;
     }
 }
