@@ -1,13 +1,24 @@
-import { Document } from "./document";
-import { SimpleTokenizer } from "./tokenizer/simpletokenizer";
-import { CaseSensitiveTokenizer } from "./tokenizer/casesensitivetokenizer";
+import { BM25Document } from "./document/bm25-document";
+import { UnorderedDocument } from "./document/unordered-document";
 
-import { ExactWordStrategy } from "./strategy/exactwordstrategy";
-import { SearchWordStrategy } from "./strategy/searchwordstrategy";
+import { Factory } from "./tokenizer/factory";
+import { ExactWordStrategy } from "./strategy/exact-word-strategy";
+import { SearchWordStrategy } from "./strategy/search-word-strategy";
 
-import type { Setting } from "./setting";
+import type { Document } from "./document/document";
 import type { Strategy } from "./strategy/strategy";
 import type { Tokenizer } from "./tokenizer/tokenizer";
+import type { StopWord } from "./tokenizer/stop-words";
+
+const TYPE_ARRAY = "array";
+const TYPE_OBJECT = "object";
+
+export interface Setting {
+    caseSensitive?: boolean;
+    exactWordStrategy?: boolean;
+    stopWord?: StopWord;
+    unorderedDocument?: boolean;
+}
 
 export class Search {
     private document: Document;
@@ -15,42 +26,37 @@ export class Search {
     private tokenizer: Tokenizer;
 
     constructor(setting: Setting = {}) {
-        // prettier-ignore
         const {
             caseSensitive = false,
-            searchWordStrategy = true
+            exactWordStrategy = false,
+            stopWord = null,
+            unorderedDocument = true,
         } = setting;
 
-        this.document = new Document();
-        this.tokenizer = new SimpleTokenizer();
-        if (!caseSensitive) {
-            this.tokenizer = new CaseSensitiveTokenizer(this.tokenizer);
-        }
+        this.document = unorderedDocument
+            ? new UnorderedDocument()
+            : new BM25Document();
 
-        this.strategy = searchWordStrategy
+        this.tokenizer = Factory.init(caseSensitive, stopWord);
+
+        this.strategy = !exactWordStrategy
             ? new SearchWordStrategy(this.document)
             : new ExactWordStrategy(this.document);
     }
 
     index(uid: string, body: any) {
-        const tokens = this.prepare(body);
-        const total = tokens.length;
-        for (let i = 0; i < total; i++) {
-            this.document.insert(tokens[i], uid);
-        }
+        this.document.insert(uid, this.prepare(body));
     }
 
     where(text: string): string[] {
-        const tokens = this.tokenizer.tokenize(text);
-        const [collection] = this.strategy.where(tokens);
-        return collection;
+        return this.strategy.where(this.tokenizer.tokenize(text));
     }
 
     private prepare(body: any): string[] {
         let tokens: string[] = [];
 
         switch (this.getType(body)) {
-            case "array": {
+            case TYPE_ARRAY: {
                 const total = body.length;
                 for (let i = 0; i < total; i++) {
                     const result = this.prepare(body[i]);
@@ -63,7 +69,7 @@ export class Search {
                 break;
             }
 
-            case "object": {
+            case TYPE_OBJECT: {
                 const keys = Object.keys(body);
                 const total = keys.length;
 
@@ -95,11 +101,11 @@ export class Search {
 
         const type = Object.prototype.toString.call(value);
         if (type === "[object Object]") {
-            return "object";
+            return TYPE_OBJECT;
         }
 
         if (type === "[object Array]") {
-            return "array";
+            return TYPE_ARRAY;
         }
 
         return typeof value;

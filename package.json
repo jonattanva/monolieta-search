@@ -20,9 +20,14 @@
     "rollup": "~2.58.0",
     "rollup-plugin-dts": "~4.0.0",
     "rollup-plugin-terser": "~7.0.2",
-    "ts-jest": "~27.0.5",
-    "typescript": "~4.4.3"
+    "ts-jest": "~27.0.6",
+    "typescript": "~4.4.4"
   },
+  "keywords": [
+    "search",
+    "performance",
+    "indexing"
+  ],
   "license": "MIT",
   "author": "Jonattan Velásquez <jonattanva89@gmail.com>",
   "repository": {

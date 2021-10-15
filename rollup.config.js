@@ -24,7 +24,7 @@ export default [
         plugins: [commonjs(), typescript()],
     },
     {
-        input: "dist/types/index.d.ts",
+        input: "types/index.d.ts",
         output: [
             {
                 file: "dist/index.d.ts",

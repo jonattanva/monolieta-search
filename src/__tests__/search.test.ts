@@ -1,6 +1,18 @@
 import { Search } from "../search";
 
 describe("Search", () => {
+    it("search document (unordered)", () => {
+        const search = new Search({
+            unorderedDocument: false,
+        });
+
+        search.index("001", "The Lord of the Rings");
+        search.index("002", "The Hobbit");
+
+        expect(search.where("the")).toEqual(["001", "002"]);
+        expect(search.where("the hobbit")).toEqual(["002", "001"]);
+    });
+
     it("search document (case sensitive)", () => {
         const search = new Search({
             caseSensitive: true,
@@ -28,7 +40,7 @@ describe("Search", () => {
     it("search document (search word strategy)", () => {
         const search = new Search({
             caseSensitive: false,
-            searchWordStrategy: true,
+            exactWordStrategy: false,
         });
 
         search.index("001", "The Lord of the Rings");
@@ -42,7 +54,7 @@ describe("Search", () => {
     it("search document (exact word strategy)", () => {
         const search = new Search({
             caseSensitive: false,
-            searchWordStrategy: false,
+            exactWordStrategy: true,
         });
 
         search.index("001", "The Lord of the Rings");
