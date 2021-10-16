@@ -1,10 +1,10 @@
 import { SimpleTokenizer } from "../simple-tokenizer";
-import { CaseSensitiveTokenizer } from "../case-sensitive-tokenizer";
+import { CaseInsensitiveTokenizer } from "../case-insensitive-tokenizer";
 
 describe("Case sesitive tokenizer", () => {
     it("tokenize", () => {
         const simpleTokenizer = new SimpleTokenizer();
-        const caseSensitiveTokenizer = new CaseSensitiveTokenizer(
+        const caseSensitiveTokenizer = new CaseInsensitiveTokenizer(
             simpleTokenizer
         );
         expect(caseSensitiveTokenizer.tokenize("Hello")).toEqual(["hello"]);

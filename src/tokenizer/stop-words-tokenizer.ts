@@ -4,7 +4,7 @@ export type StopWord = {
     [word in string]: boolean;
 };
 
-export class StopWords implements Tokenizer {
+export class StopWordsTokenizer implements Tokenizer {
     private tokenizer: Tokenizer;
     private stopWord: StopWord;
 

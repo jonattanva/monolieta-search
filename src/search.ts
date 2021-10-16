@@ -1,14 +1,14 @@
 import { BM25Document } from "./document/bm25-document";
 import { UnorderedDocument } from "./document/unordered-document";
 
-import { Factory } from "./tokenizer/factory";
+import { Configurator } from "./tokenizer/configurator";
 import { ExactWordStrategy } from "./strategy/exact-word-strategy";
 import { SearchWordStrategy } from "./strategy/search-word-strategy";
 
 import type { Document } from "./document/document";
 import type { Strategy } from "./strategy/strategy";
 import type { Tokenizer } from "./tokenizer/tokenizer";
-import type { StopWord } from "./tokenizer/stop-words";
+import type { StopWord } from "./tokenizer/stop-words-tokenizer";
 
 const TYPE_ARRAY = "array";
 const TYPE_OBJECT = "object";
@@ -16,6 +16,7 @@ const TYPE_OBJECT = "object";
 export interface Setting {
     caseSensitive?: boolean;
     exactWordStrategy?: boolean;
+    ignoreAccent?: boolean;
     stopWord?: StopWord;
     unorderedDocument?: boolean;
 }
@@ -29,6 +30,7 @@ export class Search {
         const {
             caseSensitive = false,
             exactWordStrategy = false,
+            ignoreAccent = true,
             stopWord = null,
             unorderedDocument = true,
         } = setting;
@@ -37,7 +39,11 @@ export class Search {
             ? new UnorderedDocument()
             : new BM25Document();
 
-        this.tokenizer = Factory.init(caseSensitive, stopWord);
+        this.tokenizer = Configurator.init(
+            caseSensitive,
+            ignoreAccent,
+            stopWord
+        );
 
         this.strategy = !exactWordStrategy
             ? new SearchWordStrategy(this.document)

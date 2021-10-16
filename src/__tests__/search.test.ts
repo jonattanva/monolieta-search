@@ -13,6 +13,16 @@ describe("Search", () => {
         expect(search.where("the hobbit")).toEqual(["002", "001"]);
     });
 
+    it("search document (accent)", () => {
+        const search = new Search();
+        search.index("001", "Parásitos");
+        search.index("002", "Déjame salir");
+        search.index("003", "El Tiburón");
+
+        expect(search.where("Tiburón")).toEqual(["003"]);
+        expect(search.where("Tiburon")).toEqual(["003"]);
+    });
+
     it("search document (case sensitive)", () => {
         const search = new Search({
             caseSensitive: true,

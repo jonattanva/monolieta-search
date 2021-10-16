@@ -25,4 +25,9 @@ describe("Simple tokenizer", () => {
         const simpleTokenizer = new SimpleTokenizer();
         expect(simpleTokenizer.tokenize("a,b.c")).toEqual(["a", "b", "c"]);
     });
+
+    it("accent", () => {
+        const simpleTokenizer = new SimpleTokenizer();
+        expect(simpleTokenizer.tokenize("áéíóú")).toEqual(["áéíóú"]);
+    });
 });

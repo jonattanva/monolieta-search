@@ -1,6 +1,6 @@
 import type { Tokenizer } from "./tokenizer";
 
-export class CaseSensitiveTokenizer implements Tokenizer {
+export class CaseInsensitiveTokenizer implements Tokenizer {
     private tokenizer: Tokenizer;
 
     constructor(tokenizer: Tokenizer) {

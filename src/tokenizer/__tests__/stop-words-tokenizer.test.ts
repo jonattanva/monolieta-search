@@ -1,19 +1,19 @@
-import { StopWords } from "../stop-words";
+import { StopWordsTokenizer } from "../stop-words-tokenizer";
 import { SimpleTokenizer } from "../simple-tokenizer";
 
 describe("Stop words", () => {
     it("tokenize", () => {
         const simpleTokenizer = new SimpleTokenizer();
-        const stopWords = new StopWords(simpleTokenizer, {
+        const stopWordsTokenizer = new StopWordsTokenizer(simpleTokenizer, {
             the: true,
             a: true,
             an: true,
             on: true,
-            orange: false
+            orange: false,
         });
 
         expect(
-            stopWords.tokenize(
+            stopWordsTokenizer.tokenize(
                 "A person with an orange blanket covering them, sleeping on a wooden park bench."
             )
         ).toEqual([
