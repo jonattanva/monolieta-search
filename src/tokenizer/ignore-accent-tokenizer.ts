@@ -8,8 +8,17 @@ export class IgnoreAccentTokenizer implements Tokenizer {
     }
 
     tokenize(text: string): string[] {
-        return this.tokenizer.tokenize(text).map((word) => {
-            return word.normalize("NFD").replace(/\p{Diacritic}/gu, "");
-        });
+        const result: string[] = [];
+        const elements = this.tokenizer.tokenize(text);
+        const total = elements.length;
+
+        for (let index = 0; index < total; index++) {
+            const element = elements[index];
+            result.push(
+                element.normalize("NFD").replace(/\p{Diacritic}/gu, "")
+            );
+        }
+
+        return result;
     }
 }

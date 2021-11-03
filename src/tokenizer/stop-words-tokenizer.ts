@@ -14,8 +14,17 @@ export class StopWordsTokenizer implements Tokenizer {
     }
 
     tokenize(text: string): string[] {
-        return this.tokenizer
-            .tokenize(text)
-            .filter((word) => !this.stopWord[word.toLowerCase()]);
+        const result: string[] = [];
+        const elements = this.tokenizer.tokenize(text);
+        const total = elements.length;
+
+        for (let index = 0; index < total; index++) {
+            const element = elements[index];
+            if (!this.stopWord[element.toLowerCase()]) {
+                result.push(element);
+            }
+        }
+
+        return result;
     }
 }

@@ -8,8 +8,15 @@ export class CaseInsensitiveTokenizer implements Tokenizer {
     }
 
     tokenize(text: string): string[] {
-        return this.tokenizer.tokenize(text).map((word) => {
-            return word.toLocaleLowerCase();
-        });
+        const result: string[] = [];
+        const elements = this.tokenizer.tokenize(text);
+        const total = elements.length;
+
+        for (let index = 0; index < total; index++) {
+            const element = elements[index];
+            result.push(element.toLocaleLowerCase());
+        }
+
+        return result;
     }
 }
