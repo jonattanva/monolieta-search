@@ -10,11 +10,11 @@ describe("Exact word strategy", () => {
         document.insert("003", ["Lord"]);
 
         const exactWordStrategy = new ExactWordStrategy(document);
-        expect(exactWordStrategy.where(["The"])).toEqual(["002", "003"]);
-        expect(exactWordStrategy.where(["Lord"])).toEqual(["003"]);
-        expect(exactWordStrategy.where(["Hobbit"])).toEqual(["002"]);
+        expect(exactWordStrategy.search(["The"])).toEqual(["002", "003"]);
+        expect(exactWordStrategy.search(["Lord"])).toEqual(["003"]);
+        expect(exactWordStrategy.search(["Hobbit"])).toEqual(["002"]);
 
-        expect(exactWordStrategy.where(["ho"])).toEqual([]);
-        expect(exactWordStrategy.where(["the"])).toEqual([]);
+        expect(exactWordStrategy.search(["ho"])).toEqual([]);
+        expect(exactWordStrategy.search(["the"])).toEqual([]);
     });
 });

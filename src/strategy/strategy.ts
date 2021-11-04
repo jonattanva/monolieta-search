@@ -9,7 +9,7 @@ export abstract class Strategy {
         this.init = new Map<string, boolean>();
     }
 
-    abstract where(tokens: string[]): string[];
+    abstract search(tokens: string[]): string[];
 
     reset() {
         this.init.clear();

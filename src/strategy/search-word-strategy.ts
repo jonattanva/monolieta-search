@@ -6,7 +6,7 @@ export class SearchWordStrategy extends Strategy {
         super(document);
     }
 
-    where(tokens: string[]): string[] {
+    search(tokens: string[]): string[] {
         const result: string[] = [];
         const total = tokens.length;
 

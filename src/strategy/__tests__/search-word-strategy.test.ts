@@ -10,8 +10,8 @@ describe("Search word strategy", () => {
         document.insert("003", ["Lord"]);
 
         const searchWordStrategy = new SearchWordStrategy(document);
-        expect(searchWordStrategy.where(["The"])).toEqual(["002", "003"]);
-        expect(searchWordStrategy.where(["Lo"])).toEqual(["003"]);
-        expect(searchWordStrategy.where(["it"])).toEqual(["002"]);
+        expect(searchWordStrategy.search(["The"])).toEqual(["002", "003"]);
+        expect(searchWordStrategy.search(["Lo"])).toEqual(["003"]);
+        expect(searchWordStrategy.search(["it"])).toEqual(["002"]);
     });
 });

@@ -54,8 +54,8 @@ export class Search {
         this.document.insert(uid, this.prepare(body));
     }
 
-    where(text: string): string[] {
-        return this.strategy.where(this.tokenizer.tokenize(text));
+    search(text: string): string[] {
+        return this.strategy.search(this.tokenizer.tokenize(text));
     }
 
     private prepare(body: any): string[] {
