@@ -16,10 +16,11 @@ npm install monolieta-search
 ```
 
 ## Usage
-```js
-import { Search } from 'monolieta-search';
 
-const client = new Search()
+```js
+import { Search } from "monolieta-search";
+
+const client = new Search();
 client.index("001", "The Lord of the Rings");
 client.index("002", "The Hobbit");
 
@@ -27,13 +28,88 @@ client.search("the hobbit"); // ["002", "001"]
 ```
 
 ## Setting
-| Name                    | Type              | Default     | Description          |
-| ----------------------- | ----------------- | :--------:  | -------------------- |
-| caseSensitive           | boolean           |             |  |
-| exactWordStrategy       | boolean           |             |  |
-| ignoreAccent            | boolean           |             |  |
-| stopWord                | Object            |             |  |
-| unorderedDocument       | boolean           |             |  |
+
+| Name              | Type    | Default | Description |
+| ----------------- | ------- | :-----: | ----------- |
+| caseSensitive     | boolean |  false  |             |
+| exactWordStrategy | boolean |  false  |             |
+| ignoreAccent      | boolean |  true   |             |
+| stopWord          | Object  |  null   |             |
+| unorderedDocument | boolean |  true   |             |
+
+## Case sensitive
+
+```js
+const client = new Search({
+    caseSensitive: true,
+});
+
+client.index("001", "The Lord of the Rings");
+client.index("002", "The Hobbit");
+
+client.search("hobbit"); // []
+client.search("Hobbit"); // ["002"]
+```
+
+## Exact word strategy
+
+```js
+const client = new Search({
+    exactWordStrategy: true,
+});
+
+client.index("001", "The Lord of the Rings");
+client.index("002", "The Hobbit");
+
+client.search("o"); // []
+client.search("Rings"); // ["001"]
+```
+
+## Ignore accent
+
+```js
+const client = new Search({
+    ignoreAccent: false,
+});
+
+client.index("001", "Parásitos");
+client.index("002", "Déjame salir");
+client.index("003", "El Tiburón");
+
+client.search("Tiburon"); // []
+client.search("Tiburón"); // ["003"]
+```
+
+## Stop word
+
+```js
+const client = new Search({
+    stopWord: {
+        the: true,
+    },
+});
+
+client.index("001", "The Lord of the Rings");
+client.index("002", "The Hobbit");
+
+client.search("the"); // []
+client.search("the hobbit"); // ["002"]
+```
+
+## Unordered document
+
+```js
+const client = new Search({
+    unorderedDocument: false,
+});
+
+client.index("001", "The Lord of the Rings");
+client.index("002", "The Hobbit");
+
+client.search("the"); // ["001", "002"]
+client.search("the hobbit"); // ["002", "001"]
+```
 
 ## License
+
 This project is licensed under the MIT License.
