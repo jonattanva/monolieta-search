@@ -15,5 +15,25 @@ yarn add monolieta-search
 npm install monolieta-search
 ```
 
+## Usage
+```js
+import { Search } from 'monolieta-search';
+
+const client = new Search()
+client.index("001", "The Lord of the Rings");
+client.index("002", "The Hobbit");
+
+client.search("the hobbit"); // ["002", "001"]
+```
+
+## Setting
+| Name                    | Type              | Default     | Description          |
+| ----------------------- | ----------------- | :--------:  | -------------------- |
+| caseSensitive           | boolean           |             |  |
+| exactWordStrategy       | boolean           |             |  |
+| ignoreAccent            | boolean           |             |  |
+| stopWord                | Object            |             |  |
+| unorderedDocument       | boolean           |             |  |
+
 ## License
 This project is licensed under the MIT License.
