@@ -1,6 +1,6 @@
 {
   "name": "monolieta-search",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Search library for browser and Node.js",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -11,7 +11,8 @@
   "scripts": {
     "build": "tsc && rollup -c",
     "test": "jest",
-    "watch": "tsc && rollup -c -w"
+    "watch": "tsc && rollup -c -w",
+    "public": "npm run build && npm publish --access public"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "~21.0.1",
