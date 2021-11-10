@@ -58,6 +58,10 @@ export class Search {
         return this.strategy.search(this.tokenizer.tokenize(text));
     }
 
+    isEmpty() {
+        return this.document.length === 0;
+    }
+
     private prepare(body: any): string[] {
         let tokens: string[] = [];
 

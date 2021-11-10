@@ -1,6 +1,6 @@
 {
   "name": "monolieta-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search library for browser and Node.js",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -19,7 +19,7 @@
     "@types/jest": "~27.0.2",
     "jest": "~27.3.1",
     "rollup": "~2.59.0",
-    "rollup-plugin-dts": "~4.0.0",
+    "rollup-plugin-dts": "~4.0.1",
     "rollup-plugin-terser": "~7.0.2",
     "ts-jest": "~27.0.7",
     "tslib": "~2.3.1",

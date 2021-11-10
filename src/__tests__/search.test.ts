@@ -1,6 +1,19 @@
 import { Search } from "../search";
 
 describe("Search", () => {
+    it("the document is empty", () => {
+        const search = new Search();
+        search.index("001", "The Lord of the Rings");
+        search.index("002", "The Hobbit");
+
+        expect(search.isEmpty()).toBeFalsy();
+    });
+
+    it("the document is not empty", () => {
+        const search = new Search();
+        expect(search.isEmpty()).toBeTruthy();
+    });
+
     it("search document (stop word)", () => {
         const search = new Search({
             stopWord: {

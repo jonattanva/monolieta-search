@@ -3,6 +3,8 @@
 
 # Monolieta-Search
 
+Search library for browser and Node.js
+
 ## Getting started
 
 Install `monolieta-search` using yarn or npm
