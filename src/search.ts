@@ -53,10 +53,8 @@ export class Search {
         this.document.insert(uid, this.strategy.apply(this.prepare(body)));
     }
 
-    search(text: string): string[] {
-        return this.document.search(
-            this.strategy.apply(this.tokenizer.tokenize(text))
-        );
+    search(query: string): string[] {
+        return this.document.search(this.tokenizer.tokenize(query));
     }
 
     isEmpty() {

@@ -132,7 +132,7 @@ describe("Search", () => {
         expect(search.search("hobbit")).toEqual(["002"]);
     });
 
-    it("demo", () => {
+    it("demo 1", () => {
         const client = new Search({
             exactWordStrategy: false,
             unorderedDocument: false,
@@ -143,5 +143,24 @@ describe("Search", () => {
         client.index("003", "The King");
 
         expect(client.search("Ring")).toEqual(["001"]);
+    });
+
+    it("demo 2", () => {
+        const client = new Search({
+            caseSensitive: false,
+            exactWordStrategy: false,
+            ignoreAccent: true,
+            stopWord: {
+                de: true,
+            },
+            unorderedDocument: false,
+        });
+
+        client.index("003", "Piezas");
+        client.index("007", "Préstamo de Herramientas");
+        client.index("008", "Evaluación de proveedores");
+
+        expect(client.search("proveedores")).toEqual(["008"]);
+        expect(client.search("pr")).toEqual(["007", "008"]);
     });
 });
