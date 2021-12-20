@@ -28,6 +28,6 @@ export class UnorderedDocument extends Document {
     }
 
     relevance(): void {
-        // Ignore this method
+        // do nothing
     }
 }

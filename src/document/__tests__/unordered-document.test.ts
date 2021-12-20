@@ -26,15 +26,4 @@ describe("Unordered", () => {
         expect(document.get("Hobbit")).toEqual(["002"]);
         expect(document.get("Lord")).toEqual(["003"]);
     });
-
-    it("find document", () => {
-        const document = new UnorderedDocument();
-        document.insert("002", ["The"]);
-        document.insert("002", ["Hobbit"]);
-        document.insert("003", ["The"]);
-        document.insert("003", ["Lord"]);
-
-        expect(document.find("o")).toEqual([["002"], ["003"]]);
-        expect(document.find("Ho")).toEqual([["002"]]);
-    });
 });

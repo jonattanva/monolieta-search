@@ -26,14 +26,4 @@ describe("Relevance ", () => {
         expect(document.get("hobbit")).toEqual(["002"]);
         expect(document.get("lord")).toEqual(["001","003"]);
     });
-
-    it("find document", () => {
-        const document = new BM25Document();
-        document.insert("001", ["the", "lord", "of", "the", "rings", "the", "return", "of", "the", "king"]);
-        document.insert("002", ["the", "hobbit", "an", "unexpected", "journey"]);
-        document.insert("003", ["the", "lord", "of", "the", "rings", "the", "fellowship", "of", "the", "ring"]);
-
-        expect(document.find("o")).toEqual([["001", "003"], ["001", "003"], ["002"], ["002"], ["003"]]);
-        expect(document.find("ho")).toEqual([["002"]]);
-    });
 });

@@ -1,25 +1,24 @@
+import { Configurator } from "./tokenizer/configurator";
 import { BM25Document } from "./document/bm25-document";
+import { ExactStrategy } from "./strategy/exact-strategy";
+import { PrefixStrategy } from "./strategy/prefix-strategy";
 import { UnorderedDocument } from "./document/unordered-document";
 
-import { Configurator } from "./tokenizer/configurator";
-import { ExactWordStrategy } from "./strategy/exact-word-strategy";
-import { SearchWordStrategy } from "./strategy/search-word-strategy";
-
-import type { Document } from "./document/document";
 import type { Strategy } from "./strategy/strategy";
+import type { Document } from "./document/document";
 import type { Tokenizer } from "./tokenizer/tokenizer";
 import type { StopWord } from "./tokenizer/stop-words-tokenizer";
 
 const TYPE_ARRAY = "array";
 const TYPE_OBJECT = "object";
 
-export interface Setting {
+export type Setting = {
     caseSensitive?: boolean;
     exactWordStrategy?: boolean;
     ignoreAccent?: boolean;
     stopWord?: StopWord;
     unorderedDocument?: boolean;
-}
+};
 
 export class Search {
     private document: Document;
@@ -35,27 +34,29 @@ export class Search {
             unorderedDocument = true,
         } = setting;
 
-        this.document = unorderedDocument
-            ? new UnorderedDocument()
-            : new BM25Document();
-
         this.tokenizer = Configurator.init(
             caseSensitive,
             ignoreAccent,
             stopWord
         );
 
-        this.strategy = !exactWordStrategy
-            ? new SearchWordStrategy(this.document)
-            : new ExactWordStrategy(this.document);
+        this.document = unorderedDocument
+            ? new UnorderedDocument()
+            : new BM25Document();
+
+        this.strategy = exactWordStrategy
+            ? new ExactStrategy()
+            : new PrefixStrategy();
     }
 
     index(uid: string, body: any) {
-        this.document.insert(uid, this.prepare(body));
+        this.document.insert(uid, this.strategy.apply(this.prepare(body)));
     }
 
     search(text: string): string[] {
-        return this.strategy.search(this.tokenizer.tokenize(text));
+        return this.document.search(
+            this.strategy.apply(this.tokenizer.tokenize(text))
+        );
     }
 
     isEmpty() {

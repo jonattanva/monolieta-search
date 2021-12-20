@@ -11,7 +11,6 @@ export type Detail = {
 };
 
 // https://es.wikipedia.org/wiki/Okapi_BM25
-// https://burakkanber.com/blog/machine-learning-full-text-search-in-javascript-relevance-scoring/
 export class BM25Document extends Document {
     private readonly k1 = 1.3;
     private readonly b = 0.75;

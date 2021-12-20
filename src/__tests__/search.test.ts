@@ -83,7 +83,7 @@ describe("Search", () => {
         search.index("001", "The Lord of the Rings");
         search.index("002", "The Hobbit");
 
-        expect(search.search("o")).toEqual(["001", "002"]);
+        expect(search.search("t")).toEqual(["001", "002"]);
         expect(search.search("Rings")).toEqual(["001"]);
         expect(search.search("The Hobbit")).toEqual(["001", "002"]);
     });
@@ -130,5 +130,18 @@ describe("Search", () => {
 
         expect(search.search("fantasy")).toEqual(["001", "002"]);
         expect(search.search("hobbit")).toEqual(["002"]);
+    });
+
+    it("demo", () => {
+        const client = new Search({
+            exactWordStrategy: false,
+            unorderedDocument: false,
+        });
+
+        client.index("001", "The Lord of the Rings");
+        client.index("002", "The Hobbit");
+        client.index("003", "The King");
+
+        expect(client.search("Ring")).toEqual(["001"]);
     });
 });
