@@ -31,13 +31,13 @@ client.search("the hobbit"); // ["002", "001"]
 
 ## Setting
 
-| Name              | Type    | Default | Description |
-| ----------------- | ------- | :-----: | ----------- |
-| caseSensitive     | boolean |  false  |             |
-| exactWordStrategy | boolean |  false  |             |
-| ignoreAccent      | boolean |  true   |             |
-| stopWord          | Object  |  null   |             |
-| unorderedDocument | boolean |  true   |             |
+| Name              | Type    | Default |
+| ----------------- | ------- | :-----: |
+| caseSensitive     | boolean |  false  |
+| exactWordStrategy | boolean |  false  |
+| ignoreAccent      | boolean |  true   |
+| stopWord          | Object  |  null   |
+| unorderedDocument | boolean |  true   |
 
 ## Case sensitive
 
