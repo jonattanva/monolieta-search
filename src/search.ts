@@ -44,13 +44,13 @@ export class Search {
             ? new UnorderedDocument()
             : new BM25Document();
 
-        this.strategy = exactWordStrategy
-            ? new ExactStrategy()
-            : new PrefixStrategy();
+        this.strategy = !exactWordStrategy
+            ? new PrefixStrategy()
+            : new ExactStrategy();
     }
 
-    index(uid: string, body: any) {
-        this.document.insert(uid, this.strategy.apply(this.prepare(body)));
+    index(uid: string | number, body: any) {
+        this.document.insert(`${uid}`, this.strategy.apply(this.prepare(body)));
     }
 
     search(query: string): string[] {

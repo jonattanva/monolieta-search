@@ -163,4 +163,32 @@ describe("Search", () => {
         expect(client.search("proveedores")).toEqual(["008"]);
         expect(client.search("pr")).toEqual(["007", "008"]);
     });
+
+    it("demo 3", () => {
+        const client = new Search({
+            exactWordStrategy: false,
+            unorderedDocument: false,
+        });
+
+        client.index("001", "The Lord of the Rings");
+        client.index("001", "Elijah Wood");
+        client.index("001", "Frodo Baggins");
+
+        client.index("002", "The Hobbit");
+        client.index("002", "Martin Freeman");
+
+        expect(client.search("Frodo")).toEqual(["001"]);
+        expect(client.search("Wood")).toEqual(["001"]);
+        expect(client.search("Lord")).toEqual(["001"]);
+    });
+
+    it("demo 4", () => {
+        const client = new Search();
+
+        client.index(1, "Active");
+        client.index(2, "Inactive");
+
+        expect(client.search("act")).toEqual(["1"]);
+        expect(client.search("inac")).toEqual(["2"]);
+    });
 });
