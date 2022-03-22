@@ -1,5 +1,4 @@
 import dts from "rollup-plugin-dts";
-import { terser } from "rollup-plugin-terser";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 
@@ -10,11 +9,6 @@ export default [
             {
                 file: "dist/index.js",
                 format: "cjs",
-            },
-            {
-                file: "dist/index.min.js",
-                format: "cjs",
-                plugins: [terser()],
             },
             {
                 file: "dist/index.esm.js",
