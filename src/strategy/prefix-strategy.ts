@@ -1,4 +1,4 @@
-import type { Strategy } from "./strategy";
+import type { Strategy } from './strategy';
 
 export class PrefixStrategy implements Strategy {
     apply(token: string[]): string[] {

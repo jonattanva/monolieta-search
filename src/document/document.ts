@@ -9,6 +9,15 @@ export abstract class Document {
 
     abstract relevance(token: string, uid: string): void;
 
+    remove(token: string) {
+        for (const [_, value] of this.collection) {
+            const index = value.indexOf(token);
+            if (index !== -1) {
+                value.splice(index, 1);
+            }
+        }
+    }
+
     search(tokens: string[]): string[] {
         const result: string[] = [];
         const total = tokens.length;
@@ -45,9 +54,10 @@ export abstract class Document {
     get(token: string): string[] {
         if (this.collection.has(token)) {
             const values = this.collection.get(token);
-            if (values) {
+            if (values && values.length > 0) {
                 return values;
             }
+            this.collection.delete(token);
         }
         return [];
     }

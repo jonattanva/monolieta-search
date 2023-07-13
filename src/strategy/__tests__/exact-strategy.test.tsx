@@ -1,11 +1,8 @@
-import { ExactStrategy } from "../exact-strategy";
+import { ExactStrategy } from '../exact-strategy';
 
-describe("Exact strategy", () => {
-    it("apply", () => {
+describe('Exact strategy', () => {
+    it('apply', () => {
         const exactStrategy = new ExactStrategy();
-        expect(exactStrategy.apply(["the", "person"])).toEqual([
-            "the",
-            "person",
-        ]);
+        expect(exactStrategy.apply(['the', 'person'])).toEqual(['the', 'person']);
     });
 });

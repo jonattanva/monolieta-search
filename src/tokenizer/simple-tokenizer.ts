@@ -1,4 +1,4 @@
-import type { Tokenizer } from "./tokenizer";
+import type { Tokenizer } from './tokenizer';
 
 export class SimpleTokenizer implements Tokenizer {
     tokenize(text: string): string[] {

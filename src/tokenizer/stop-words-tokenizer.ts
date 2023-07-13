@@ -1,8 +1,6 @@
-import type { Tokenizer } from "./tokenizer";
+import type { Tokenizer } from './tokenizer';
 
-export type StopWord = {
-    [word in string]: boolean;
-};
+export type StopWord = Record<string, boolean>;
 
 export class StopWordsTokenizer implements Tokenizer {
     private tokenizer: Tokenizer;

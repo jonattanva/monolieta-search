@@ -1,4 +1,4 @@
-import { Document } from "./document";
+import { Document } from './document';
 
 export type Term = {
     idf: number;
@@ -60,7 +60,7 @@ export class BM25Document extends Document {
                 if (!frequency.has(token)) {
                     frequency.set(token, {
                         count: 0,
-                        total: total,
+                        total: total
                     });
                 }
 
@@ -73,7 +73,7 @@ export class BM25Document extends Document {
             if (!this.term.has(token)) {
                 this.term.set(token, {
                     idf: 0,
-                    count: 0,
+                    count: 0
                 });
             }
 
@@ -101,8 +101,7 @@ export class BM25Document extends Document {
         const count = frequency!.count;
         const numerator = count * (this.k1 + 1);
         const denomerator =
-            count +
-            this.k1 * (1 - this.b + (this.b * frequency!.total) / this.average);
+            count + this.k1 * (1 - this.b + (this.b * frequency!.total) / this.average);
 
         const score = (idf * numerator) / denomerator;
         this.score.set(uid, this.score.get(uid)! + score);

@@ -1,16 +1,16 @@
-import { Configurator } from "./tokenizer/configurator";
-import { BM25Document } from "./document/bm25-document";
-import { ExactStrategy } from "./strategy/exact-strategy";
-import { PrefixStrategy } from "./strategy/prefix-strategy";
-import { UnorderedDocument } from "./document/unordered-document";
+import { Configurator } from './tokenizer/configurator';
+import { BM25Document } from './document/bm25-document';
+import { ExactStrategy } from './strategy/exact-strategy';
+import { PrefixStrategy } from './strategy/prefix-strategy';
+import { UnorderedDocument } from './document/unordered-document';
 
-import type { Strategy } from "./strategy/strategy";
-import type { Document } from "./document/document";
-import type { Tokenizer } from "./tokenizer/tokenizer";
-import type { StopWord } from "./tokenizer/stop-words-tokenizer";
+import type { Strategy } from './strategy/strategy';
+import type { Document } from './document/document';
+import type { Tokenizer } from './tokenizer/tokenizer';
+import type { StopWord } from './tokenizer/stop-words-tokenizer';
 
-const TYPE_ARRAY = "array";
-const TYPE_OBJECT = "object";
+const TYPE_ARRAY = 'array';
+const TYPE_OBJECT = 'object';
 
 export type Setting = {
     caseSensitive?: boolean;
@@ -31,22 +31,14 @@ export class Search {
             exactWordStrategy = false,
             ignoreAccent = true,
             stopWord = null,
-            unorderedDocument = true,
+            unorderedDocument = true
         } = setting;
 
-        this.tokenizer = Configurator.init(
-            caseSensitive,
-            ignoreAccent,
-            stopWord
-        );
+        this.tokenizer = Configurator.init(caseSensitive, ignoreAccent, stopWord);
 
-        this.document = unorderedDocument
-            ? new UnorderedDocument()
-            : new BM25Document();
+        this.document = unorderedDocument ? new UnorderedDocument() : new BM25Document();
 
-        this.strategy = !exactWordStrategy
-            ? new PrefixStrategy()
-            : new ExactStrategy();
+        this.strategy = !exactWordStrategy ? new PrefixStrategy() : new ExactStrategy();
     }
 
     index(uid: string | number, body: any) {
@@ -55,6 +47,10 @@ export class Search {
 
     search(query: string): string[] {
         return this.document.search(this.tokenizer.tokenize(query));
+    }
+
+    remove(uid: string | number): void {
+        this.document.remove(`${uid}`);
     }
 
     isEmpty() {
@@ -105,15 +101,15 @@ export class Search {
 
     private getType(value: any): string {
         if (value === null || value === undefined) {
-            return "";
+            return '';
         }
 
         const type = Object.prototype.toString.call(value);
-        if (type === "[object Object]") {
+        if (type === '[object Object]') {
             return TYPE_OBJECT;
         }
 
-        if (type === "[object Array]") {
+        if (type === '[object Array]') {
             return TYPE_ARRAY;
         }
 

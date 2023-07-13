@@ -1,4 +1,4 @@
-import type { Tokenizer } from "./tokenizer";
+import type { Tokenizer } from './tokenizer';
 
 export class IgnoreAccentTokenizer implements Tokenizer {
     private tokenizer: Tokenizer;
@@ -14,9 +14,7 @@ export class IgnoreAccentTokenizer implements Tokenizer {
 
         for (let index = 0; index < total; index++) {
             const element = elements[index];
-            result.push(
-                element.normalize("NFD").replace(/\p{Diacritic}/gu, "")
-            );
+            result.push(element.normalize('NFD').replace(/\p{Diacritic}/gu, ''));
         }
 
         return result;

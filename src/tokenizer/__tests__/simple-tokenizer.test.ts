@@ -1,33 +1,33 @@
-import { SimpleTokenizer } from "../simple-tokenizer";
+import { SimpleTokenizer } from '../simple-tokenizer';
 
-describe("Simple tokenizer", () => {
-    it("single", () => {
+describe('Simple tokenizer', () => {
+    it('single', () => {
         const simpleTokenizer = new SimpleTokenizer();
-        expect(simpleTokenizer.tokenize("a")).toEqual(["a"]);
+        expect(simpleTokenizer.tokenize('a')).toEqual(['a']);
     });
 
-    it("multiple", () => {
+    it('multiple', () => {
         const simpleTokenizer = new SimpleTokenizer();
-        expect(simpleTokenizer.tokenize("a b")).toEqual(["a", "b"]);
+        expect(simpleTokenizer.tokenize('a b')).toEqual(['a', 'b']);
     });
 
-    it("hyphens", () => {
+    it('hyphens', () => {
         const simpleTokenizer = new SimpleTokenizer();
-        expect(simpleTokenizer.tokenize("a-b-c")).toEqual(["a-b-c"]);
+        expect(simpleTokenizer.tokenize('a-b-c')).toEqual(['a-b-c']);
     });
 
-    it("trim", () => {
+    it('trim', () => {
         const simpleTokenizer = new SimpleTokenizer();
-        expect(simpleTokenizer.tokenize("   a   ")).toEqual(["a"]);
+        expect(simpleTokenizer.tokenize('   a   ')).toEqual(['a']);
     });
 
-    it("punctuation", () => {
+    it('punctuation', () => {
         const simpleTokenizer = new SimpleTokenizer();
-        expect(simpleTokenizer.tokenize("a,b.c")).toEqual(["a", "b", "c"]);
+        expect(simpleTokenizer.tokenize('a,b.c')).toEqual(['a', 'b', 'c']);
     });
 
-    it("accent", () => {
+    it('accent', () => {
         const simpleTokenizer = new SimpleTokenizer();
-        expect(simpleTokenizer.tokenize("áéíóú")).toEqual(["áéíóú"]);
+        expect(simpleTokenizer.tokenize('áéíóú')).toEqual(['áéíóú']);
     });
 });

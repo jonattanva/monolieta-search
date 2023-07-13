@@ -19,13 +19,13 @@ npm install monolieta-search
 ## Usage
 
 ```js
-import { Search } from "monolieta-search";
+import { Search } from 'monolieta-search';
 
 const client = new Search();
-client.index("001", "The Lord of the Rings");
-client.index("002", "The Hobbit");
+client.index('001', 'The Lord of the Rings');
+client.index('002', 'The Hobbit');
 
-client.search("the hobbit"); // ["002", "001"]
+client.search('the hobbit'); // ["002", "001"]
 ```
 
 ## Setting
@@ -42,43 +42,43 @@ client.search("the hobbit"); // ["002", "001"]
 
 ```js
 const client = new Search({
-    caseSensitive: true,
+    caseSensitive: true
 });
 
-client.index("001", "The Lord of the Rings");
-client.index("002", "The Hobbit");
+client.index('001', 'The Lord of the Rings');
+client.index('002', 'The Hobbit');
 
-client.search("hobbit"); // []
-client.search("Hobbit"); // ["002"]
+client.search('hobbit'); // []
+client.search('Hobbit'); // ["002"]
 ```
 
 ## Exact word strategy
 
 ```js
 const client = new Search({
-    exactWordStrategy: true,
+    exactWordStrategy: true
 });
 
-client.index("001", "The Lord of the Rings");
-client.index("002", "The Hobbit");
+client.index('001', 'The Lord of the Rings');
+client.index('002', 'The Hobbit');
 
-client.search("o"); // []
-client.search("Rings"); // ["001"]
+client.search('o'); // []
+client.search('Rings'); // ["001"]
 ```
 
 ## Ignore accent
 
 ```js
 const client = new Search({
-    ignoreAccent: false,
+    ignoreAccent: false
 });
 
-client.index("001", "Parásitos");
-client.index("002", "Déjame salir");
-client.index("003", "El Tiburón");
+client.index('001', 'Parásitos');
+client.index('002', 'Déjame salir');
+client.index('003', 'El Tiburón');
 
-client.search("Tiburon"); // []
-client.search("Tiburón"); // ["003"]
+client.search('Tiburon'); // []
+client.search('Tiburón'); // ["003"]
 ```
 
 ## Stop word
@@ -86,29 +86,29 @@ client.search("Tiburón"); // ["003"]
 ```js
 const client = new Search({
     stopWord: {
-        the: true,
-    },
+        the: true
+    }
 });
 
-client.index("001", "The Lord of the Rings");
-client.index("002", "The Hobbit");
+client.index('001', 'The Lord of the Rings');
+client.index('002', 'The Hobbit');
 
-client.search("the"); // []
-client.search("the hobbit"); // ["002"]
+client.search('the'); // []
+client.search('the hobbit'); // ["002"]
 ```
 
 ## Unordered document
 
 ```js
 const client = new Search({
-    unorderedDocument: false,
+    unorderedDocument: false
 });
 
-client.index("001", "The Lord of the Rings");
-client.index("002", "The Hobbit");
+client.index('001', 'The Lord of the Rings');
+client.index('002', 'The Hobbit');
 
-client.search("the"); // ["001", "002"]
-client.search("the hobbit"); // ["002", "001"]
+client.search('the'); // ["001", "002"]
+client.search('the hobbit'); // ["002", "001"]
 ```
 
 ## License
