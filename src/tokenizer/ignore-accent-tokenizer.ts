@@ -1,4 +1,4 @@
-import type { Tokenizer } from './tokenizer';
+import { Tokenizer } from './tokenizer';
 
 export class IgnoreAccentTokenizer implements Tokenizer {
     private tokenizer: Tokenizer;

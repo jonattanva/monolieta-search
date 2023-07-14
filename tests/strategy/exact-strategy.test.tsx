@@ -1,4 +1,5 @@
-import { ExactStrategy } from '../exact-strategy';
+import { ExactStrategy } from '../../src/strategy/exact-strategy';
+import { describe, expect, it } from 'vitest';
 
 describe('Exact strategy', () => {
     it('apply', () => {

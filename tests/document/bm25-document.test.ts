@@ -1,4 +1,5 @@
-import { BM25Document } from '../bm25-document';
+import { BM25Document } from '../../src/document/bm25-document';
+import { describe, expect, it } from 'vitest';
 
 describe('Relevance ', () => {
     it('document is empty', () => {

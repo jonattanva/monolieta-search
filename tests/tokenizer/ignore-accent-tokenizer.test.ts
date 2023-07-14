@@ -1,5 +1,6 @@
-import { IgnoreAccentTokenizer } from '../ignore-accent-tokenizer';
-import { SimpleTokenizer } from '../simple-tokenizer';
+import { IgnoreAccentTokenizer } from '../../src/tokenizer/ignore-accent-tokenizer';
+import { SimpleTokenizer } from '../../src/tokenizer/simple-tokenizer';
+import { describe, expect, it } from 'vitest';
 
 describe('Ignore accent', () => {
     it('tokenize', () => {

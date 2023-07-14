@@ -1,4 +1,5 @@
-import { PrefixStrategy } from '../prefix-strategy';
+import { PrefixStrategy } from '../../src/strategy/prefix-strategy';
+import { describe, expect, it } from 'vitest';
 
 describe('Prefix strategy', () => {
     it('apply', () => {

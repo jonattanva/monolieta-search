@@ -1,4 +1,4 @@
-import type { Strategy } from './strategy';
+import { Strategy } from './strategy';
 
 export class ExactStrategy implements Strategy {
     apply(token: string[]): string[] {

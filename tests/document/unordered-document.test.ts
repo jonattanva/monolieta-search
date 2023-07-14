@@ -1,4 +1,5 @@
-import { UnorderedDocument } from '../unordered-document';
+import { UnorderedDocument } from '../../src/document/unordered-document';
+import { describe, expect, it } from 'vitest';
 
 describe('Unordered', () => {
     it('document is empty', () => {

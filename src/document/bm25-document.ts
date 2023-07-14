@@ -1,14 +1,5 @@
 import { Document } from './document';
-
-export type Term = {
-    idf: number;
-    count: number;
-};
-
-export type Detail = {
-    count: number;
-    total: number;
-};
+import type { Term, Detail } from '../type';
 
 // https://es.wikipedia.org/wiki/Okapi_BM25
 export class BM25Document extends Document {
@@ -121,7 +112,7 @@ export class BM25Document extends Document {
     }
 
     private calculateInverseDocumentFrequency() {
-        for (const [_, value] of this.term) {
+        for (const [, value] of this.term) {
             const numerator = this.totalDocuments - value.count + 0.5;
             const denomerator = value.count + 0.5;
             value.idf = Math.max(Math.log10(numerator / denomerator), 0.01);

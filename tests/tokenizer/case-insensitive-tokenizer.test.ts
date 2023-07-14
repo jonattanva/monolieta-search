@@ -1,5 +1,6 @@
-import { SimpleTokenizer } from '../simple-tokenizer';
-import { CaseInsensitiveTokenizer } from '../case-insensitive-tokenizer';
+import { SimpleTokenizer } from '../../src/tokenizer/simple-tokenizer';
+import { CaseInsensitiveTokenizer } from '../../src/tokenizer/case-insensitive-tokenizer';
+import { describe, expect, it } from 'vitest';
 
 describe('Case sesitive tokenizer', () => {
     it('tokenize', () => {

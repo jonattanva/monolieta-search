@@ -1,4 +1,5 @@
-import { Search } from '../search';
+import { Search } from '../src/search';
+import { describe, expect, it } from 'vitest';
 
 describe('Search', () => {
     it('the document is empty', () => {

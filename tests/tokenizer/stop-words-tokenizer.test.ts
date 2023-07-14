@@ -1,5 +1,6 @@
-import { StopWordsTokenizer } from '../stop-words-tokenizer';
-import { SimpleTokenizer } from '../simple-tokenizer';
+import { StopWordsTokenizer } from '../../src/tokenizer/stop-words-tokenizer';
+import { SimpleTokenizer } from '../../src/tokenizer/simple-tokenizer';
+import { describe, expect, it } from 'vitest';
 
 describe('Stop words', () => {
     it('tokenize', () => {

@@ -1,4 +1,5 @@
-import { SimpleTokenizer } from '../simple-tokenizer';
+import { SimpleTokenizer } from '../../src/tokenizer/simple-tokenizer';
+import { describe, expect, it } from 'vitest';
 
 describe('Simple tokenizer', () => {
     it('single', () => {

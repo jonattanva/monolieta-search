@@ -10,7 +10,7 @@ export abstract class Document {
     abstract relevance(token: string, uid: string): void;
 
     remove(token: string) {
-        for (const [_, value] of this.collection) {
+        for (const [, value] of this.collection) {
             const index = value.indexOf(token);
             if (index !== -1) {
                 value.splice(index, 1);
