@@ -14,5 +14,10 @@
     "strict": true,
     "target": "es6"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }
