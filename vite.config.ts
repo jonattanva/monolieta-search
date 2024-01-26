@@ -18,7 +18,7 @@ export default defineConfig({
             junit: './junit.xml'
         },
         coverage: {
-            provider: 'c8',
+            provider: 'v8',
             reporter: ['text-summary', 'cobertura', 'lcov']
         }
     },
