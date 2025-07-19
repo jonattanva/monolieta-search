@@ -1,93 +1,93 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="36" failures="0" errors="0" time="0.015581039">
-    <testsuite name="tests/search.test.ts" timestamp="2025-02-13T23:51:16.686Z" hostname="Jonattan.local" tests="17" failures="0" errors="0" skipped="0" time="0.003833666">
-        <testcase classname="tests/search.test.ts" name="Search &gt; the document is empty" time="0.000766667">
+<testsuites name="vitest tests" tests="36" failures="0" errors="0" time="0.04748225">
+    <testsuite name="tests/search.test.ts" timestamp="2025-07-19T02:41:45.755Z" hostname="pkrvmq0rgcvqdmg" tests="17" failures="0" errors="0" skipped="0" time="0.013639">
+        <testcase classname="tests/search.test.ts" name="Search &gt; the document is empty" time="0.002418875">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; the document is not empty" time="0.000131958">
+        <testcase classname="tests/search.test.ts" name="Search &gt; the document is not empty" time="0.000274681">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; search document (stop word)" time="0.00041925">
+        <testcase classname="tests/search.test.ts" name="Search &gt; search document (stop word)" time="0.001425344">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; search document (unordered)" time="0.000340583">
+        <testcase classname="tests/search.test.ts" name="Search &gt; search document (unordered)" time="0.00115427">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; search document (accent)" time="0.000234666">
+        <testcase classname="tests/search.test.ts" name="Search &gt; search document (accent)" time="0.000573639">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; search document (case sensitive)" time="0.0001025">
+        <testcase classname="tests/search.test.ts" name="Search &gt; search document (case sensitive)" time="0.000410334">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; search document (case insensitive)" time="0.000119291">
+        <testcase classname="tests/search.test.ts" name="Search &gt; search document (case insensitive)" time="0.000399163">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; search document (search word strategy)" time="0.000089584">
+        <testcase classname="tests/search.test.ts" name="Search &gt; search document (search word strategy)" time="0.000552599">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; search document (exact word strategy)" time="0.000196">
+        <testcase classname="tests/search.test.ts" name="Search &gt; search document (exact word strategy)" time="0.00054288">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; search document (index is string)" time="0.000070291">
+        <testcase classname="tests/search.test.ts" name="Search &gt; search document (index is string)" time="0.000406137">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; search document (index is array)" time="0.000067834">
+        <testcase classname="tests/search.test.ts" name="Search &gt; search document (index is array)" time="0.000327409">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; search document (index is object)" time="0.000085875">
+        <testcase classname="tests/search.test.ts" name="Search &gt; search document (index is object)" time="0.000376331">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; demo 1" time="0.000078167">
+        <testcase classname="tests/search.test.ts" name="Search &gt; demo 1" time="0.000331908">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; demo 2" time="0.000123208">
+        <testcase classname="tests/search.test.ts" name="Search &gt; demo 2" time="0.000655862">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; demo 3" time="0.000137084">
+        <testcase classname="tests/search.test.ts" name="Search &gt; demo 3" time="0.000669316">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; demo 4" time="0.00006325">
+        <testcase classname="tests/search.test.ts" name="Search &gt; demo 4" time="0.000397981">
         </testcase>
-        <testcase classname="tests/search.test.ts" name="Search &gt; remove document" time="0.000149583">
-        </testcase>
-    </testsuite>
-    <testsuite name="tests/document/bm25-document.test.ts" timestamp="2025-02-13T23:51:16.688Z" hostname="Jonattan.local" tests="4" failures="0" errors="0" skipped="0" time="0.001921041">
-        <testcase classname="tests/document/bm25-document.test.ts" name="Relevance  &gt; document is empty" time="0.000670375">
-        </testcase>
-        <testcase classname="tests/document/bm25-document.test.ts" name="Relevance  &gt; insert" time="0.00029275">
-        </testcase>
-        <testcase classname="tests/document/bm25-document.test.ts" name="Relevance  &gt; get document" time="0.000198792">
-        </testcase>
-        <testcase classname="tests/document/bm25-document.test.ts" name="Relevance  &gt; remove" time="0.000241542">
+        <testcase classname="tests/search.test.ts" name="Search &gt; remove document" time="0.00055812">
         </testcase>
     </testsuite>
-    <testsuite name="tests/document/unordered-document.test.ts" timestamp="2025-02-13T23:51:16.688Z" hostname="Jonattan.local" tests="4" failures="0" errors="0" skipped="0" time="0.001807667">
-        <testcase classname="tests/document/unordered-document.test.ts" name="Unordered &gt; document is empty" time="0.000655167">
+    <testsuite name="tests/document/bm25-document.test.ts" timestamp="2025-07-19T02:41:45.760Z" hostname="pkrvmq0rgcvqdmg" tests="4" failures="0" errors="0" skipped="0" time="0.005699454">
+        <testcase classname="tests/document/bm25-document.test.ts" name="Relevance  &gt; document is empty" time="0.002102396">
         </testcase>
-        <testcase classname="tests/document/unordered-document.test.ts" name="Unordered &gt; create document" time="0.000164125">
+        <testcase classname="tests/document/bm25-document.test.ts" name="Relevance  &gt; insert" time="0.000688582">
         </testcase>
-        <testcase classname="tests/document/unordered-document.test.ts" name="Unordered &gt; get document" time="0.000187917">
+        <testcase classname="tests/document/bm25-document.test.ts" name="Relevance  &gt; get document" time="0.000815298">
         </testcase>
-        <testcase classname="tests/document/unordered-document.test.ts" name="Unordered &gt; remove" time="0.000280708">
-        </testcase>
-    </testsuite>
-    <testsuite name="tests/strategy/exact-strategy.test.tsx" timestamp="2025-02-13T23:51:16.688Z" hostname="Jonattan.local" tests="1" failures="0" errors="0" skipped="0" time="0.001148">
-        <testcase classname="tests/strategy/exact-strategy.test.tsx" name="Exact strategy &gt; apply" time="0.000689875">
+        <testcase classname="tests/document/bm25-document.test.ts" name="Relevance  &gt; remove" time="0.00074102">
         </testcase>
     </testsuite>
-    <testsuite name="tests/strategy/prefix-strategy.test.tsx" timestamp="2025-02-13T23:51:16.688Z" hostname="Jonattan.local" tests="1" failures="0" errors="0" skipped="0" time="0.001206">
-        <testcase classname="tests/strategy/prefix-strategy.test.tsx" name="Prefix strategy &gt; apply" time="0.000775417">
+    <testsuite name="tests/document/unordered-document.test.ts" timestamp="2025-07-19T02:41:45.762Z" hostname="pkrvmq0rgcvqdmg" tests="4" failures="0" errors="0" skipped="0" time="0.005893859">
+        <testcase classname="tests/document/unordered-document.test.ts" name="Unordered &gt; document is empty" time="0.002265048">
+        </testcase>
+        <testcase classname="tests/document/unordered-document.test.ts" name="Unordered &gt; create document" time="0.000372694">
+        </testcase>
+        <testcase classname="tests/document/unordered-document.test.ts" name="Unordered &gt; get document" time="0.000849833">
+        </testcase>
+        <testcase classname="tests/document/unordered-document.test.ts" name="Unordered &gt; remove" time="0.000956655">
         </testcase>
     </testsuite>
-    <testsuite name="tests/tokenizer/case-insensitive-tokenizer.test.ts" timestamp="2025-02-13T23:51:16.689Z" hostname="Jonattan.local" tests="1" failures="0" errors="0" skipped="0" time="0.001257458">
-        <testcase classname="tests/tokenizer/case-insensitive-tokenizer.test.ts" name="Case sesitive tokenizer &gt; tokenize" time="0.000775209">
+    <testsuite name="tests/strategy/exact-strategy.test.tsx" timestamp="2025-07-19T02:41:45.763Z" hostname="pkrvmq0rgcvqdmg" tests="1" failures="0" errors="0" skipped="0" time="0.003328208">
+        <testcase classname="tests/strategy/exact-strategy.test.tsx" name="Exact strategy &gt; apply" time="0.001977813">
         </testcase>
     </testsuite>
-    <testsuite name="tests/tokenizer/ignore-accent-tokenizer.test.ts" timestamp="2025-02-13T23:51:16.689Z" hostname="Jonattan.local" tests="1" failures="0" errors="0" skipped="0" time="0.001358625">
-        <testcase classname="tests/tokenizer/ignore-accent-tokenizer.test.ts" name="Ignore accent &gt; tokenize" time="0.000886667">
+    <testsuite name="tests/strategy/prefix-strategy.test.tsx" timestamp="2025-07-19T02:41:45.764Z" hostname="pkrvmq0rgcvqdmg" tests="1" failures="0" errors="0" skipped="0" time="0.003303763">
+        <testcase classname="tests/strategy/prefix-strategy.test.tsx" name="Prefix strategy &gt; apply" time="0.002176203">
         </testcase>
     </testsuite>
-    <testsuite name="tests/tokenizer/simple-tokenizer.test.ts" timestamp="2025-02-13T23:51:16.689Z" hostname="Jonattan.local" tests="6" failures="0" errors="0" skipped="0" time="0.001801041">
-        <testcase classname="tests/tokenizer/simple-tokenizer.test.ts" name="Simple tokenizer &gt; single" time="0.000728833">
-        </testcase>
-        <testcase classname="tests/tokenizer/simple-tokenizer.test.ts" name="Simple tokenizer &gt; multiple" time="0.000164042">
-        </testcase>
-        <testcase classname="tests/tokenizer/simple-tokenizer.test.ts" name="Simple tokenizer &gt; hyphens" time="0.000068042">
-        </testcase>
-        <testcase classname="tests/tokenizer/simple-tokenizer.test.ts" name="Simple tokenizer &gt; trim" time="0.000096417">
-        </testcase>
-        <testcase classname="tests/tokenizer/simple-tokenizer.test.ts" name="Simple tokenizer &gt; punctuation" time="0.000087875">
-        </testcase>
-        <testcase classname="tests/tokenizer/simple-tokenizer.test.ts" name="Simple tokenizer &gt; accent" time="0.00010575">
+    <testsuite name="tests/tokenizer/case-insensitive-tokenizer.test.ts" timestamp="2025-07-19T02:41:45.764Z" hostname="pkrvmq0rgcvqdmg" tests="1" failures="0" errors="0" skipped="0" time="0.002542365">
+        <testcase classname="tests/tokenizer/case-insensitive-tokenizer.test.ts" name="Case sesitive tokenizer &gt; tokenize" time="0.001638541">
         </testcase>
     </testsuite>
-    <testsuite name="tests/tokenizer/stop-words-tokenizer.test.ts" timestamp="2025-02-13T23:51:16.689Z" hostname="Jonattan.local" tests="1" failures="0" errors="0" skipped="0" time="0.001247541">
-        <testcase classname="tests/tokenizer/stop-words-tokenizer.test.ts" name="Stop words &gt; tokenize" time="0.000768584">
+    <testsuite name="tests/tokenizer/ignore-accent-tokenizer.test.ts" timestamp="2025-07-19T02:41:45.765Z" hostname="pkrvmq0rgcvqdmg" tests="1" failures="0" errors="0" skipped="0" time="0.004117087">
+        <testcase classname="tests/tokenizer/ignore-accent-tokenizer.test.ts" name="Ignore accent &gt; tokenize" time="0.002774978">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/tokenizer/simple-tokenizer.test.ts" timestamp="2025-07-19T02:41:45.765Z" hostname="pkrvmq0rgcvqdmg" tests="6" failures="0" errors="0" skipped="0" time="0.005685999">
+        <testcase classname="tests/tokenizer/simple-tokenizer.test.ts" name="Simple tokenizer &gt; single" time="0.002115119">
+        </testcase>
+        <testcase classname="tests/tokenizer/simple-tokenizer.test.ts" name="Simple tokenizer &gt; multiple" time="0.000367074">
+        </testcase>
+        <testcase classname="tests/tokenizer/simple-tokenizer.test.ts" name="Simple tokenizer &gt; hyphens" time="0.000435762">
+        </testcase>
+        <testcase classname="tests/tokenizer/simple-tokenizer.test.ts" name="Simple tokenizer &gt; trim" time="0.000382653">
+        </testcase>
+        <testcase classname="tests/tokenizer/simple-tokenizer.test.ts" name="Simple tokenizer &gt; punctuation" time="0.000476438">
+        </testcase>
+        <testcase classname="tests/tokenizer/simple-tokenizer.test.ts" name="Simple tokenizer &gt; accent" time="0.000255847">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/tokenizer/stop-words-tokenizer.test.ts" timestamp="2025-07-19T02:41:45.767Z" hostname="pkrvmq0rgcvqdmg" tests="1" failures="0" errors="0" skipped="0" time="0.003272515">
+        <testcase classname="tests/tokenizer/stop-words-tokenizer.test.ts" name="Stop words &gt; tokenize" time="0.002306375">
         </testcase>
     </testsuite>
 </testsuites>
